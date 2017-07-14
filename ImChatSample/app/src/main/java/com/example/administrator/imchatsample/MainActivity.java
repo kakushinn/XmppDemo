@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void sendMessage(){
-        Chat chat = ChatManager.getInstanceFor(connection).createChat("admin@192.168.0.245", this);
+        Chat chat = ChatManager.getInstanceFor(connection).createChat("admin@192.168.0.245", null);
         try {
             chat.sendMessage("Hello!IM GuoChen~~");
         } catch (SmackException.NotConnectedException e) {
