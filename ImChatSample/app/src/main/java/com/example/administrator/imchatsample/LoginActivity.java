@@ -178,7 +178,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
                     break;
                 case 2:
-                    isLogin = true;
+                    isLogin = false;
                     startActivity(new Intent(LoginActivity.this, FriendsActivity.class));
                     break;
                 case 3:
