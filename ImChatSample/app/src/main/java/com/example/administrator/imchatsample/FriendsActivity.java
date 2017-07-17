@@ -49,6 +49,8 @@ public class FriendsActivity extends AppCompatActivity implements AdapterView.On
     private List<Friend> getMyFriends(){
         MyXMPPTCPConnection connection = MyXMPPTCPConnection.getInstance();
         List<Friend> friends = new ArrayList<Friend>();
+        //通过Roster.getInstanceFor(connection)获取Roast对象;
+        //通过Roster对象的getEntries()获取Set，遍历该Set就可以获取好友的信息了;
         for(RosterEntry entry : Roster.getInstanceFor(connection).getEntries()){
             Friend friend = new Friend(entry.getUser(), entry.getName());
             friends.add(friend);

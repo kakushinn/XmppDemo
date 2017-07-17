@@ -91,6 +91,8 @@ public class ChatActivity extends AppCompatActivity implements ChatManagerListen
 
     private void initChat(){
         if(chatManager != null){
+            //第一个参数是 用户的ID
+            //第二个参数是 ChatMessageListener，我们这里传null就好了
             chat = chatManager.createChat(friendJid, null);
         }
     }
@@ -100,6 +102,7 @@ public class ChatActivity extends AppCompatActivity implements ChatManagerListen
         messageList.add(chatMessage);
         if(chat != null){
             try {
+                //发送消息，参数为发送的消息内容
                 chat.sendMessage(msgContent);
                 et_chat.setText("");
             } catch (SmackException.NotConnectedException e) {
@@ -110,12 +113,15 @@ public class ChatActivity extends AppCompatActivity implements ChatManagerListen
         chatListView.setSelection(messageList.size() - 1);
     }
 
-
+    //ChatListener中需要重写的方法
     @Override
     public void chatCreated(Chat chat, boolean createdLocally) {
+        //在这里面给chat对象添加ChatMessageListener
         chat.addMessageListener(this);
     }
 
+    //ChatMessageListener中需要重写的方法
+    //当接收到对方发来的消息的时候，就会回调processMessage方法
     @Override
     public void processMessage(Chat chat, Message message) {
         if(message.getType().equals(org.jivesoftware.smack.packet.Message.Type.chat) || message.getType().equals(org.jivesoftware.smack.packet.Message.Type.normal)){
