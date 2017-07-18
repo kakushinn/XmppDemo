@@ -30,6 +30,7 @@ public class MyXMPPTCPConnection extends XMPPTCPConnection {
             //是否查看debug日志
             builder.setDebuggerEnabled(true);
             connection = new MyXMPPTCPConnection(builder.build());
+            connection.setPacketReplyTimeout(10000);
         }
         return connection;
     }
